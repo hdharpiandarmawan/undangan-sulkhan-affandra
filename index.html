@@ -8,7 +8,11 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400&display=swap" rel="stylesheet">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
 body{
     font-family:'Inter',sans-serif;
@@ -30,6 +34,17 @@ body{
     text-align:center;
 }
 
+.opening h2{
+    font-family:'Playfair Display',serif;
+    font-size:32px;
+    color:#d4af37;
+}
+
+.opening p{
+    margin-top:10px;
+    opacity:.8;
+}
+
 .opening button{
     margin-top:30px;
     padding:14px 35px;
@@ -38,6 +53,7 @@ body{
     background:linear-gradient(135deg,#d4af37,#8b6f47);
     color:#000;
     cursor:pointer;
+    font-weight:bold;
 }
 
 /* HERO */
@@ -47,18 +63,26 @@ body{
     linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.9)),
     url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80');
     background-size:cover;
+    background-position:center;
     display:flex;
     justify-content:center;
     align-items:center;
     flex-direction:column;
+    text-align:center;
 }
 
 .hero h1{
     font-family:'Playfair Display',serif;
-    font-size:48px;
+    font-size:58px;
 }
 
-.gold{color:#d4af37;}
+.hero h2{
+    margin-top:10px;
+}
+
+.gold{
+    color:#d4af37;
+}
 
 .section{
     padding:80px 20px;
@@ -69,8 +93,34 @@ body{
 
 .card{
     background:rgba(255,255,255,0.05);
-    padding:30px;
+    backdrop-filter:blur(10px);
+    padding:35px;
     border-radius:20px;
+    border:1px solid rgba(255,255,255,0.08);
+}
+
+.card p{
+    line-height:1.8;
+}
+
+/* COUNTDOWN */
+.countdown-wrap{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    flex-wrap:wrap;
+    margin-top:25px;
+}
+
+.count-box{
+    background:rgba(255,255,255,.05);
+    padding:20px;
+    border-radius:15px;
+    min-width:90px;
+}
+
+.count-box h1{
+    color:#d4af37;
 }
 
 /* GALERI */
@@ -82,24 +132,33 @@ body{
 
 .gallery img{
     width:100%;
-    border-radius:10px;
+    border-radius:12px;
     cursor:pointer;
+    transition:.3s;
+}
+
+.gallery img:hover{
+    transform:scale(1.03);
 }
 
 /* PREVIEW */
 #preview{
     display:none;
     position:fixed;
-    top:0;left:0;
-    width:100%;height:100%;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
     background:rgba(0,0,0,.9);
     justify-content:center;
     align-items:center;
+    z-index:9999;
 }
 
 #preview img{
     max-width:90%;
     max-height:90%;
+    border-radius:10px;
 }
 
 /* BUTTON */
@@ -110,6 +169,8 @@ body{
     border:none;
     border-radius:30px;
     cursor:pointer;
+    color:#000;
+    font-weight:bold;
 }
 
 /* MUSIC */
@@ -123,6 +184,14 @@ body{
     background:#d4af37;
     border:none;
     cursor:pointer;
+    font-size:18px;
+}
+
+iframe{
+    width:100%;
+    height:300px;
+    border:none;
+    border-radius:12px;
 }
 </style>
 </head>
@@ -131,7 +200,7 @@ body{
 
 <!-- OPENING -->
 <div class="opening" id="opening">
-<h2>Undangan Khitan Sulkhan & Fandra</h2>
+<h2>Undangan Khitan</h2>
 <p id="guestName">Untuk Tamu Terhormat</p>
 <button onclick="start()">Buka Undangan</button>
 </div>
@@ -139,7 +208,9 @@ body{
 <!-- HERO -->
 <section class="hero">
 <h1 class="gold">Sulkhan</h1>
-<h2>Harvi Keenan</h2>
+<h2 class="gold">Harvi Keenan</h2>
+<h3>Putra Kami</h3>
+<h4>Harpian Darmawan & Novi Purnama Sari</h4>
 </section>
 
 <!-- DETAIL -->
@@ -148,8 +219,44 @@ body{
 <h2 class="gold">Detail Acara</h2>
 <p>Sabtu, 30 Mei 2026</p>
 <p>08:00 WIB sampai selesai</p>
-<p>Perumahan Citra Elok Blok B2 No.02<br>Desa Singajaya, Kec. Jonggol, Kabupaten Bogor, Jawa Barat 16830</p>
+<p>
+Perumahan Citra Elok Blok B2 No.02<br>
+Desa Singajaya, Kec. Jonggol,<br>
+Kabupaten Bogor, Jawa Barat 16830
+</p>
 <p>Hiburan Tersedia</p>
+</div>
+</section>
+
+<!-- COUNTDOWN -->
+<section class="section">
+<div class="card">
+
+<h2 class="gold">Menuju Hari Bahagia</h2>
+
+<div class="countdown-wrap">
+
+<div class="count-box">
+<h1 id="days">0</h1>
+<p>Hari</p>
+</div>
+
+<div class="count-box">
+<h1 id="hours">0</h1>
+<p>Jam</p>
+</div>
+
+<div class="count-box">
+<h1 id="minutes">0</h1>
+<p>Menit</p>
+</div>
+
+<div class="count-box">
+<h1 id="seconds">0</h1>
+<p>Detik</p>
+</div>
+
+</div>
 </div>
 </section>
 
@@ -159,17 +266,25 @@ body{
 <h2 class="gold">Doa</h2>
 <p>
 Ya Allah, jadikanlah Sulkhan anak yang sholeh,
-kuat imannya, dan menjadi kebahagiaan bagi kedua orang tuanya.
+kuat imannya, menjadi kebanggaan dan kebahagiaan bagi kedua orang tuanya.
 </p>
 </div>
 </section>
 
 <!-- MAP -->
 <section class="section">
-<iframe src="https://www.google.com/maps?q=-6.4691307975262875,107.05066549167019&output=embed"
-style="width:100%;height:300px;border:none;border-radius:10px;"></iframe>
+<h2 class="gold">Lokasi</h2>
+
+<iframe src="https://www.google.com/maps?q=-6.4691307975262875,107.05066549167019&output=embed"></iframe>
+
+<br><br>
+
+<a href="https://www.google.com/maps?q=-6.4691307975262875,107.05066549167019" target="_blank">
+<button class="btn">Navigasi ke Lokasi</button>
+</a>
 </section>
 
+<!-- GALERI -->
 <section class="section">
 <h2 class="gold">Galeri</h2>
 <div class="gallery">
@@ -182,9 +297,14 @@ style="width:100%;height:300px;border:none;border-radius:10px;"></iframe>
 <img id="previewImg">
 </div>
 
+<!-- FOOTER -->
+<section class="section">
+<p style="opacity:.6">Terima kasih atas doa dan kehadirannya ✨</p>
+</section>
+
 <!-- MUSIC -->
-<audio id="music" loop>
-<source src="123.mp3">
+<audio id="music" loop autoplay muted preload="auto">
+<source src="123.mp3" type="audio/mpeg">
 </audio>
 
 <button class="music-btn" onclick="toggleMusic()">🎵</button>
@@ -193,18 +313,27 @@ style="width:100%;height:300px;border:none;border-radius:10px;"></iframe>
 
 /* START */
 function start(){
+
     document.getElementById("opening").style.display="none";
 
     let music = document.getElementById("music");
+
+    music.muted = false;
     music.volume = 0;
-    music.play();
+
+    music.play().catch(()=>{});
 
     let vol = 0;
+
     let fade = setInterval(()=>{
+
         if(vol < 0.3){
             vol += 0.02;
             music.volume = vol;
-        } else clearInterval(fade);
+        } else {
+            clearInterval(fade);
+        }
+
     },200);
 }
 
@@ -234,6 +363,38 @@ const name=params.get("to");
 if(name){
     document.getElementById("guestName").innerText=name;
 }
+
+/* COUNTDOWN */
+const targetDate = new Date("May 30, 2026 08:00:00").getTime();
+
+setInterval(function(){
+
+    const now = new Date().getTime();
+
+    const distance = targetDate - now;
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+
+    const hours = Math.floor(
+        (distance % (1000 * 60 * 60 * 24)) /
+        (1000 * 60 * 60)
+    );
+
+    const minutes = Math.floor(
+        (distance % (1000 * 60 * 60)) /
+        (1000 * 60)
+    );
+
+    const seconds = Math.floor(
+        (distance % (1000 * 60)) / 1000
+    );
+
+    document.getElementById("days").innerHTML = days;
+    document.getElementById("hours").innerHTML = hours;
+    document.getElementById("minutes").innerHTML = minutes;
+    document.getElementById("seconds").innerHTML = seconds;
+
+},1000);
 
 </script>
 
